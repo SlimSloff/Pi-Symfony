@@ -1,0 +1,42 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block page_content %}
+    <h1>Add enfant to event</h1>
+
+    <div class="row">
+        <form id="form-project" method="GET" role="form">
+            <div class="col-md-4">
+                Événment : <br>
+                <select id="event" name="event">
+                    {% for e in events %}
+                        <option value="{{ e.id }}">{{ e.nom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                Enfant : <br>
+                <select id="enfant" name="enfant">
+                    {% for ef in enfants %}
+                        <option value="{{ ef.id }}">{{ ef.nom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" >Ajouter</button>
+        </form>
+    </div>
+    {#    {{ form_start(form) }}#}
+    {#    {{ form_widget(form) }}#}
+    {#    <input type="submit" value="Edit" />#}
+    {#    {{ form_end(form) }}#}
+
+    {#    <ul>#}
+    {#        <li>#}
+    {#            <a href="{{ path('enfant_index') }}">Back to the list</a>#}
+    {#        </li>#}
+    {#        <li>#}
+    {#            {{ form_start(delete_form) }}#}
+    {#            <input type="submit" value="Delete">#}
+    {#            {{ form_end(delete_form) }}#}
+    {#        </li>#}
+    {#    </ul>#}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Transports </h1>
+
+    <table>
+
+        <tbody>
+        {% for transport in transports %}
+            <tr>
+                <td><a href="{{ path('transport_show', { 'id': transport.id }) }}"></a></td>
+        <thead>
+        <tr>
+            <th>Prix</th>
+        </tr>
+        </thead>
+                <td>{{ transport.prix }}</td>
+                <td>
+                    <ul>
+
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+
+    </ul>
+{% endblock %}

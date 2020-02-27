@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/eventsIndex.css') }}">
+    {% endblock %}
+
+{% block body %}
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Events list</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                Rechercher : <br>
+                <input id="keyword" type="text" class="keyword criteria form-control" placeholder="Recherche événéments"><br>
+            </div>
+        </div>
+        <div class="row" id="eventsContent">
+            {% if events is empty %}
+                Aucun évenement
+            {% endif %}
+            {% for  event in events %}
+                <div class="col-sm-5 col-md-offset-1">
+                    <ul class="event-list">
+                        <li>
+                            <time
+                                    {% if event.cover != '' %}
+                                        style="filter: blur(1px); background-size: 120px 120px; background-image:url('{{ asset('uploads/evt/cover/' ~ event.cover) }}');"
+                                    {% else %}
+                                        style="filter: blur(1px);background-size: 120px 120px; background-image:url('{{ asset('assets/img/NA.png') }}')"
+                                    {% endif %}
+                                    datetime="2014-07-31 1600">
+                            </time>
+                            <div class="info" style="padding: 0 10px;">
+                                <div class="" data-social="item">
+                                    <div class="card-description" style="padding: 0px 0px;">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h3 style="font-size: 1vw; line-height: normal;"><a href="{{ path('event_show', { 'id': event.id }) }}">{{ event.nom }}
+                                                    </a>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <p>
+                                        <span class="location semi-bold">
+{#                                            <i class="fa fa-map-marker"></i> {{ event.lieu }}</span>#}
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="via">via {{ event.description }}</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- /.box-header -->
+
+        <!-- /.table-responsive -->
+    </div>
+    <!-- /.box-footer -->
+    </div>
+
+    <p><a href="{{ path('event_new') }}">Ajouter un evenement</a></p>
+    <p><a href="{{ path('enfant_new') }}">Inscrire au club</a></p>
+
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $(".keyword").keyup(function () {
+                var keyword = $(".keyword").val();
+                $.ajax({
+                    dataType: "json",
+                    url: '{{ path('event_all_recherche') }}',
+                    data: {
+                        "keyword": keyword,
+                    },
+                    error: function (response) {
+                        $("#eventsContent").html(response);
+                    },
+                    success: function (response) {
+                        $("#eventsContent").html(response);
+                    },
+                });
+            });
+        });
+    </script>
+{% endblock %}

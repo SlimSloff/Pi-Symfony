@@ -1,0 +1,47 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+    <h1>Peres list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nomprenom</th>
+                <th>Nomfils</th>
+                <th>Telephone</th>
+                <th>Adresse</th>
+                <th>Payement</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pere in peres %}
+            <tr>
+                <td><a href="{{ path('pere_show', { 'id': pere.id }) }}">{{ pere.id }}</a></td>
+                <td>{{ pere.nomPrenom }}</td>
+                <td>{{ pere.nomfils }}</td>
+                <td>{{ pere.telephone }}</td>
+                <td>{{ pere.adresse }}</td>
+                <td>{{ pere.payement }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pere_show', { 'id': pere.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pere_edit', { 'id': pere.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pere_new') }}">Create a new pere</a>
+        </li>
+    </ul>
+{% endblock %}

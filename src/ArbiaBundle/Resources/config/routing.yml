@@ -1,0 +1,78 @@
+arbia_homepage:
+    path:     /
+    defaults: { _controller: ArbiaBundle:Default:index }
+
+ajout_prof:
+    path:     /ajoutPro
+    defaults: { _controller: ArbiaBundle:Professor:Ajouter }
+
+affiche_prof:
+    path:     /affichePro
+    defaults: { _controller: ArbiaBundle:Professor:Affiche }
+
+modifier_prof:
+    path:     /modifierPro/{id}
+    defaults: { _controller: ArbiaBundle:Professor:update }
+
+supprimer_prof:
+    path:     /supprimerPro/{id}
+    defaults: { _controller: ArbiaBundle:Professor:supprimer }
+
+detailsProf:
+    path:     /detailsProf/{id}
+    defaults: { _controller: ArbiaBundle:Professor:professorDetails }
+
+afficheCal:
+    path:     /afficheCal
+    defaults: { _controller: ArbiaBundle:Seance:AfficheCal }
+
+jsonCal:
+    path:     /jsonCal
+    defaults: { _controller: ArbiaBundle:Seance:JsonCal }
+
+ajouterSE:
+    path:     /ajouterSE
+    defaults: { _controller: ArbiaBundle:SeanceEleve:ajouter }
+
+afficherSE:
+    path:     /afficherSE
+    defaults: { _controller: ArbiaBundle:SeanceEleve:affiche }
+
+modifierSE:
+    path:     /modifierSE/{id}
+    defaults: { _controller: ArbiaBundle:SeanceEleve:modifier }
+
+
+
+supprimerSE:
+    path:     /supprimerSE/{id}
+    defaults: { _controller: ArbiaBundle:SeanceEleve:supprimer }
+
+
+jsonCalSE:
+    path:     /jsonCalSE
+    defaults: { _controller: ArbiaBundle:SeanceEleve:jsonCalSE }
+
+export:
+    path:     /export
+    defaults: { _controller: ArbiaBundle:Professor:export }
+
+supprimer_seance:
+    path:     /supprimerSeance/{id}
+    defaults: { _controller: ArbiaBundle:Professor:supprimerSeance }
+
+ajout_exam:
+    path:     /ajoutExam
+    defaults: { _controller: ArbiaBundle:Professor:AjouterExamen }
+
+affiche_examen:
+    path:     /afficheExamen
+    defaults: { _controller: ArbiaBundle:Professor:afficheExamen }
+
+supprimerExamen:
+    path:     /supprimerExamen/{id}
+    defaults: { _controller: ArbiaBundle:Professor:supprimerExamen }
+
+professor_findid:
+    path: /findid
+    defaults: { _controller: "ArbiaBundle:Professor:findi"}

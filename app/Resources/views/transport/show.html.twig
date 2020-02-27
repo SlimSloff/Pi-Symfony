@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Transport</h1>
+
+    <table>
+        <tbody>
+            <tr>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ transport.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('transport_index') }}">Back to the list</a>
+        </li>
+
+
+    </ul>
+{% endblock %}

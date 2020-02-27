@@ -1,0 +1,59 @@
+{% extends 'admin.html.twig' %}
+{% block container %}
+
+
+{% set urlc= app.request.uri %}
+
+
+{% set long = urlc|length %}
+
+{% set res=  urlc|slice(65, long) %}
+
+{% if professor.id == res %}
+<center>
+
+<img src="{{ asset('images/') }}{{ professor.nomImage }}"style="width: 1400px;height: 600px">
+
+<h1>{{ professor.nom }}</h1>
+{% endif %}
+<br><br><br><br><br>
+
+                       
+                        
+
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div class="example-wrapper">
+
+
+                        {{form(form)}}
+                        </div>
+
+
+                        <br><br><br>
+                        {% for seance in seances %}
+                        {% if seance.professor.id == res %}
+
+                        <ul class="list-group">
+                        
+                            
+                                <li class="list-group-item active" align="left">{{seance.professor.nom}}</li>
+                                <li class="list-group-item"><a class="btn btn-danger" href="{{path('supprimer_seance',{'id':seance.id})}}">
+                                <i class="glyphicon glyphicon-trash icon-white"></i>Delete </a></li>
+                                <li class="list-group-item">jour  : {{seance.dateDebut | date('y-m-d')}}</li>
+                                <li class="list-group-item">heure de début  : {{seance.datefin| date('y-m-d')}}</li>
+                                <li class="list-group-item">heure de fin  : {{seance.salle}}</li>
+                                
+
+                            
+                        </ul>
+
+                        {% endif %}
+                         {% endfor %} 
+
+</center>
+
+{% endblock %}

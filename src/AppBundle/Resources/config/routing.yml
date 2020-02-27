@@ -1,0 +1,7 @@
+app_event:
+    resource: "@AppBundle/Resources/config/routing/event.yml"
+    prefix:   /event
+app_enfant:
+        resource: "@AppBundle/Resources/config/routing/enfant.yml"
+        prefix:   /enfant
+

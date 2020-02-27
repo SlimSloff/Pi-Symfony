@@ -1,0 +1,193 @@
+{% extends 'admin.html.twig' %}
+{% block container %}
+
+
+
+ <style>
+    .rating {
+    font-size:16px;
+}
+
+.rating-well {
+    display: inline-block;
+    direction: rtl;
+}
+
+.rating input.rating {
+    display: none;
+}
+
+.rating div.star {
+    font-family:FontAwesome;
+    font-weight:normal;
+    font-style:normal;
+    font-size: 25px;
+    display:inline-block;
+    position: relative;
+}
+
+.rating div.star:hover {
+    cursor:pointer;
+}
+
+.rating div.star:before {
+    content:"\f006";
+    padding-right:5px;
+    color:#999;
+}
+
+.rating div.star:hover:before,.rating div.star:hover~div.star:before {
+    content:"\f005";
+    color:#e3cf7a;
+}
+
+.rating div.star-full {
+    font-family:FontAwesome;
+    font-weight:normal;
+    font-style:normal;
+    font-size: 25px;
+    display:inline-block;
+    position: relative;
+}
+
+.rating div.star-full:before  {
+    content:"\f005";
+    padding-right:5px;
+    color:#e3cf7a;
+}
+
+.rating div.star-empty {
+    font-family:FontAwesome;
+    font-weight:normal;
+    font-style:normal;
+    font-size: 25px;
+    display:inline-block;
+    position: relative;
+}
+
+.rating div.star-empty:before  {
+    content:"\f006";
+    padding-right:5px;
+    color:#999;
+}
+
+.rating div.fa-norm {
+    font-size: 1em;
+}
+
+.rating div.fa-lg {
+    font-size: 1.33333333em;
+    line-height: 0.75em;
+    vertical-align: -15%;
+}
+
+.rating div.fa-2x {
+    font-size: 2em ;
+}
+
+.rating div.fa-3x {
+    font-size: 3em;
+}
+
+.rating div.fa-4x {
+    font-size: 4em;
+}
+
+.rating div.fa-5x {
+    font-size: 5em;
+}
+    </style>
+    <script>
+    $(function(){
+    var labelWasClicked = function labelWasClicked(){
+        var input = $(this).siblings().filter('input');
+        if (input.attr('disabled')) {
+            return;
+        }
+        input.val($(this).attr('data-value'));
+    }
+
+    var turnToStar = function turnToStar(){
+        if ($(this).find('input').attr('disabled')) {
+            return;
+        }
+        var labels = $(this).find('div');
+        labels.removeClass();
+        labels.addClass('star');
+    }
+
+    var turnStarBack = function turnStarBack(){
+        var rating = parseInt($(this).find('input').val());
+        if (rating > 0) {
+            var selectedStar = $(this).children().filter('#rating_star_'+rating)
+            var prevLabels = $(selectedStar).nextAll();
+            prevLabels.removeClass();
+            prevLabels.addClass('star-full');
+            selectedStar.removeClass();
+            selectedStar.addClass('star-full');
+        }
+    }
+
+    $('.star, .rating-well').click(labelWasClicked);
+    $('.rating-well').each(turnStarBack);
+    $('.rating-well').hover(turnToStar,turnStarBack);
+
+});
+    </script>
+    <form method="post" action="{{ path('professor_findid') }}">
+        <input type="text" name="nom"  >
+        <input type="submit" value="recherche">
+    </form>
+
+ <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Image</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Matiere</th>
+        <th>Telephonne</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for prof in profs %}
+    <tr>
+        <td>{{prof.id}}</td>
+          <td><img src="{{ asset('images/') }}{{ prof.nomImage }}" style="width: 100px;height: 100px"></td>
+
+        <td class="center">{{prof.nom}}</td>
+        <td class="center">{{prof.prenom}}</td>
+        <td class="center">{{prof.matiere}}</td>
+        <td class="center">{{prof.tel}}</td>
+        <td class="center">{{ prof.rating|rating }}</td>
+
+        
+        
+        <td class="center">
+            <a class="btn btn-success" href="{{path('detailsProf',{'id':prof.id})}}">
+                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                View
+            </a>
+            <a class="btn btn-info" href="{{path('modifier_prof',{'id':prof.id})}}">
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger" href="{{path('supprimer_prof',{'id':prof.id})}}">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>
+        </td>
+    </tr>
+    
+   
+    
+    {% endfor %}
+
+   
+  
+    </tbody>
+    </table>
+   <br><li>   <a href="{{ path('export') }}">Export</a></li>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block page_content %}
+<ul>
+    <li>
+        <a href="{{ path('enfant_new') }}">Create a new enfant</a>
+    </li>
+</ul>
+<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Events list</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                      <tr>
+                          <th>Nom</th>
+                          <th>prenom</th>
+                          <th>Id</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+        <tbody>
+        {% for enfant in enfants %}
+            <tr>
+                <td><a href="{{ path('enfant_show', { 'id': enfant.id }) }}">{{ enfant.id }}</a></td>
+                <td>{{ enfant.nom }}</td>
+                <td>{{ enfant.prenom }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('enfant_show', { 'id': enfant.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('enfant_edit', { 'id': enfant.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+      </div>
+      <!-- /.table-responsive -->
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer clearfix">
+    </div>
+    <!-- /.box-footer -->
+  </div>
+{% endblock %}

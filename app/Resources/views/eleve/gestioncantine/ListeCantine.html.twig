@@ -1,0 +1,86 @@
+{% extends 'elevemenu.html.twig'%}
+ 
+ 
+ {% block bodycontent %}
+
+            <!-- content starts -->
+              
+<div class="row">
+      <div class="row">
+    
+    <!--/span-->
+
+</div>
+
+
+
+
+
+
+    </div><!--/row-->
+
+
+<div class="row">
+
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-user"></i> Liste cantine</h2>
+
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-minimize btn-round btn-default"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                        <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <table class="table table-striped table-bordered responsive">
+                        <thead>
+                        <tr>
+                            <th>jour  cantine</th>
+                            <th>Description</th>
+                            <th>Seance</th>
+                          
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% set jour_par_nombre = { 
+        "1": "Lundi", 
+        "2": "Mardi", 
+        "3": "Mercredi", 
+        "4": "Jeudi", 
+        "5": "Vendredi", 
+        "6": "Samedi", 
+        "7": "Dimanche" 
+    } %}
+                     {% for cantine in cantines %}
+
+                        <tr>
+
+                            <td class="center">{{ jour_par_nombre[cantine.jourcantine] }}</td>
+                            <td class="center">{{cantine.descriptioncantine}}</td>
+                            <td class="center">{{cantine.sceance}}</td>
+                           
+                        </tr>
+                       {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--/span-->
+
+    </div>
+
+
+
+
+
+
+
+
+  
+
+    </div>
+    <!-- content ends -->
+ 
+     {% endblock %}

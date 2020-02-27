@@ -1,0 +1,27 @@
+
+{% extends 'AvanzuAdminThemeBundle:layout:base-layout.html.twig' %}
+{% block avanzu_sidebar %}
+<ul class="sidebar-menu tree" data-widget="tree">
+    <li class="header">MAIN NAVIGATION</li>
+    <li>
+      <a href="{{ path('event_index') }}">
+        <i class="fa fa-child"></i> <span>Evenements</span>
+      </a>
+    </li>
+    <li>
+        <a href="{{ path('enfant_index') }}">
+            <i class="fa fa-user"></i> <span>Enfant</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('arbia') }}">
+            <i class="fa fa-user"></i> <span>Gestion de Ecole</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('aziz') }}">
+            <i class="fa fa-user"></i> <span>Gestion de Abonnement</span>
+        </a>
+    </li>
+</ul>
+{% endblock %}

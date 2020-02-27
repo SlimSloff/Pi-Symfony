@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Clubs list</h1>
+
+    <table>
+
+        <tbody>
+        {% for club in clubs %}
+            <tr>
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Type</th>
+            <th>Prix</th>
+
+        </tr>
+
+                <td>{{ club.nom }}</td>
+                <td>{{ club.type }}</td>
+                <td>{{ club.prix }}</td>
+        </thead>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+
+    </ul>
+{% endblock %}

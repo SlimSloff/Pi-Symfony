@@ -1,0 +1,41 @@
+{% extends 'elevemenu.html.twig'%}
+ 
+ 
+ {% block bodycontent %}
+
+            <!-- content starts -->
+              
+
+
+
+  <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                
+                <div class="box-content">
+
+
+                    <div id="calendar"></div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div><!--/row-->
+
+
+
+    <!-- content ends -->
+ 
+     {% endblock %}
+
+     {% block externaljavascript %}
+      {{ parent() }}
+    <script src="{{ asset('bower_components/fullcalendar/dist/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('js/gestioncantincalendrar.js') }}"></script>
+    <script src='{{ asset('bower_components/moment/min/moment.min.js') }}'></script>
+<script src='{{ asset('bower_components/fullcalendar/dist/fullcalendar.min.js') }}'></script>
+<script src="{{ asset('bower_components/fullcalendar/dist/fullcalendar.min.js') }}"></script>
+<script src="{{ asset('js/gestioncantincalendrar.js') }}"></script>
+
+     {% endblock %}

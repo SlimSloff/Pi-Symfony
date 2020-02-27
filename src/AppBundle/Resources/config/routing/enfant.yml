@@ -1,0 +1,45 @@
+enfant_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Enfant:index" }
+    methods:  GET
+
+enfant_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Enfant:show" }
+    methods:  GET
+
+enfant_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Enfant:new" }
+    methods:  [GET, POST]
+
+enfant_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Enfant:edit" }
+    methods:  [GET, POST]
+
+
+enfant_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Enfant:delete" }
+    methods:  DELETE
+
+arbia:
+    path:     /arbia/ajoutPro
+    defaults: { _controller: "ArbiaBundle:Professor:Ajouter" }
+    methods:  GET
+
+aziz:
+    path:     /aziz/transport/new
+    defaults: { _controller: "EcoleBundle:transport:new" }
+    methods:  GET
+
+azizfront:
+    path:     /aziz/abonnement
+    defaults: { _controller: "EcoleBundle:Default:abonnement" }
+    methods:  GET
+
+malekfront:
+    path:     /Malek/eleve/reclamation
+    defaults: { _controller: "GestionCantineBundle:Reclamation:indexeleve" }
+    methods:  GET

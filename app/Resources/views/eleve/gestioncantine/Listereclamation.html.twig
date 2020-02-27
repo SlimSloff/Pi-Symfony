@@ -1,0 +1,91 @@
+{% extends 'elevemenu.html.twig'%}
+ 
+ 
+ {% block bodycontent %}
+
+            <!-- content starts -->
+              
+<div class="row">
+      <div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <a href="{{ path('ajouter_reclamation_eleve') }}">Envoyer reclamation</a>
+        </div>
+    </div>
+    <!--/span-->
+
+</div>
+
+
+
+
+    </div><!--/row-->
+
+
+<div class="row">
+
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-user"></i> Liste commentaire</h2>
+
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-minimize btn-round btn-default"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                        <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                    </div>
+                </div>
+
+                <div class="box-content">
+
+                    <table class="table table-striped table-bordered responsive">
+                        <thead>
+                        <tr>
+                            <th>id reclamation</th>
+                            <th>sujet</th>
+                            <th>text</th>
+                            <th>traiter</th>
+                            <th>date reclamation</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                    {% for reclamation in reclamations %}
+
+                        <tr>
+
+                            <td class="center">{{reclamation.id}}</td>
+                            <td class="center">{{reclamation.sujetreclamation}}</td>
+                            <td class="center">{{reclamation.textreclamation}}</td>
+                            <td class="center">{{ reclamation.traiter ? 'Oui':'Non' }}</td>
+                            <td class="center">{{reclamation.datereclamation|date('F j, Y, g:i a')}}</td>
+                            <td class="center">
+                                <a class="btn btn-danger" href="{{ path('supprimer_reclamation_eleve',{'id':reclamation.id}) }}">
+                                    <i class="glyphicon glyphicon-trash icon-white"></i>
+                                    Supprimer
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--/span-->
+
+    </div>
+
+
+
+
+
+
+
+
+  
+
+    </div>
+    <!-- content ends -->
+ 
+     {% endblock %}

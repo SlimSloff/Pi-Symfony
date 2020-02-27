@@ -1,0 +1,95 @@
+{% extends 'admin.html.twig' %}
+{% block container %}
+
+
+
+
+
+  
+<script>
+   
+  $(document).ready(function() {
+       var calendar = $('#calendar').fullCalendar({
+                     
+                     locale: 'fr',
+                     defaultView: 'agendaWeek',
+                    editable:false,
+                    minTime: "08:00:00",
+                    maxTime: "18:00:00",
+                    
+                    height: 'auto',
+                    header:{
+                        
+                        left:'prev,next,today',
+                        center:'title',
+                        
+                        right:'month,agendaWeek,agendaDay'
+                        },
+                        
+                        eventSources: [
+                    {
+                        url: "/gestion_ecole/web/app_dev.php/jsonCalSE",
+                        method: "GET",
+                        extraParams: {
+                            filters: JSON.stringify({})
+                        },
+                        failure: () => {
+                             alert("There was an error while fetching FullCalendar!");
+                        },
+                    },
+                ]
+                 });
+
+        });
+   
+  </script>
+
+
+ <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>classe</th>
+        <th>date debut</th>
+        <th>date fin</th>
+        <th>Matiere</th>
+        <th>action</th>
+        
+    </tr>
+    </thead>
+    <tbody>
+    {% for se in ses %}
+    <tr>
+        <td>{{se.id}}</td>
+        <td>{{se.classe}}</td>
+        <td class="center">{{se.DateDebut | date("m/d/Y h:m:s")}}</td>
+        <td claass="center">{{se.DateFin | date("m/d/Y h:m:s")}}</td>
+        <td class="center">{{se.Matiere}}</td>
+        
+        
+        <td class="center">
+            
+            <a class="btn btn-info" href="{{path('modifierSE',{'id':se.id})}}">
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger" href="{{path('supprimerSE',{'id':se.id})}}">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Delete
+            </a>
+        </td>
+    </tr>
+    
+   
+    
+    {% endfor %}
+
+   
+  
+    </tbody>
+    </table>
+    <br>
+
+   <div id="calendar" style = "margin-right: 150px;"></div>
+  
+{% endblock %}

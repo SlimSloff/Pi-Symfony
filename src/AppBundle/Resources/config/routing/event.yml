@@ -1,0 +1,31 @@
+event_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Event:index" }
+    methods:  GET
+
+event_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Event:show" }
+    methods:  GET
+
+event_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Event:new" }
+    methods:  [GET, POST]
+
+event_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Event:edit" }
+    methods:  [GET, POST]
+
+event_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Event:delete" }
+    methods:  DELETE
+
+affecter_enfant_to_event:
+    path:     /addEnfantToClub
+    defaults: { _controller: "AppBundle:Event:addEnfantToEvent" }
+event_all_recherche:
+    path:     /rechercheEvent
+    defaults: { _controller: "AppBundle:Event:rechercheEventByKeyWord" }

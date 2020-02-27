@@ -1,0 +1,89 @@
+{% extends 'admin.html.twig' %}
+{% block container %}
+
+
+
+    <script>
+
+        $(document).ready(function() {
+            var calendar = $('#calendar').fullCalendar({
+
+                locale: 'fr',
+                defaultView: 'agendaWeek',
+                editable:false,
+                minTime: "08:00:00",
+                maxTime: "18:00:00",
+
+                height: 'auto',
+                header:{
+
+                    left:'prev,next,today',
+                    center:'title',
+
+                    right:'month,agendaWeek,agendaDay'
+                },
+
+                eventSources: [
+                    {
+                        url: "/gestion_ecole/web/app_dev.php/jsonCalSE",
+                        method: "GET",
+                        extraParams: {
+                            filters: JSON.stringify({})
+                        },
+                        failure: () => {
+                            alert("There was an error while fetching FullCalendar!");
+                        },
+                    },
+                ]
+            });
+
+        });
+
+    </script>
+
+
+    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Libelle</th>
+            <th>Date Debut</th>
+            <th>Date Fin</th>
+            <th>Salle</th>
+            <th>Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for examen in examens %}
+            <tr>
+                <td>{{examen.id}}</td>
+                <td>{{examen.libelle}}</td>
+                <td>{{examen.datedebut|date}}</td>
+                <td>{{examen.datefin|date}}</td>
+                <td>{{examen.salle}}</td>
+
+
+
+
+
+                <td class="center">
+
+                    <a class="btn btn-danger" href="{{path('supprimerExamen',{'id':examen.id})}}">
+                        <i class="glyphicon glyphicon-trash icon-white"></i>
+                        Delete
+                    </a>
+                </td>
+            </tr>
+
+
+
+        {% endfor %}
+
+
+
+        </tbody>
+    </table>
+    <br>
+
+    <div id="calendar" style = "margin-right: 150px;"></div>
+{% endblock %}

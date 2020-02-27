@@ -1,0 +1,43 @@
+{% if events is empty %}
+    Aucun évenement
+{% endif %}
+{% for  event in events %}
+    <div class="col-sm-5 col-md-offset-1">
+        <ul class="event-list">
+            <li>
+                <time
+                        {% if event.cover != '' %}
+                            style="filter: blur(1px); background-size: 120px 120px; background-image:url('{{ asset('uploads/evt/cover/' ~ event.cover) }}');"
+                        {% else %}
+                            style="filter: blur(1px);background-size: 120px 120px; background-image:url('{{ asset('assets/img/NA.png') }}')"
+                        {% endif %}
+                        datetime="2014-07-31 1600">
+                </time>
+                <div class="info" style="padding: 0 10px;">
+                    <div class="" data-social="item">
+                        <div class="card-description" style="padding: 0px 0px;">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h3 style="font-size: 1vw; line-height: normal;"><a
+                                                href="{{ path('event_show', { 'id': event.id }) }}">{{ event.nom }}
+                                        </a>
+                                    </h3>
+                                </div>
+                            </div>
+                            <p>
+                            <span class="location semi-bold">
+{#                                            <i class="fa fa-map-marker"></i> {{ event.lieu }}</span>#}
+                            </span></p>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="via">via {{ event.description }}</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endfor %}

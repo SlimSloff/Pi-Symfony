@@ -1,0 +1,8 @@
+
+ecole_abonnementpage:
+    path:     /abonnement
+    defaults: { _controller: EcoleBundle:Default:abonnement }
+
+
+
+      
